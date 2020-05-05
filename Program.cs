@@ -152,7 +152,6 @@ namespace Linq
                 Console.WriteLine("49.  Select first_name, incentive amount from employee and incentives table for those employees who have incentives ");
                 Console.WriteLine("50. Select first_name, incentive amount from employee and incentives table for those employees who have incentives and incentive amount greater than 3000 ");
                 Console.WriteLine("51. Select first_name, incentive amount from employee and incentives table for all employed even if they didn't get incentives. ");
-                Console.WriteLine(" ");
                 Console.WriteLine("65. Exit");
                 Console.WriteLine("Enter your choice:");
                 choice = Convert.ToInt32(Console.ReadLine());
@@ -251,18 +250,18 @@ namespace Linq
                     case 50:
                         getFirstNameIncentiveAmountGreater();
                         break;
-                    case 51:
-                        getFirstNameIncentiveAmountIfNotIncentive();
+                    //case 51:
+                    //    getFirstNameIncentiveAmountIfNotIncentive();
+                    //    break;
+                    case 65:
+                        break;
+                    default:
                         break;
                 }
             }
         }
 
-        private static void getFirstNameIncentiveAmountIfNotIncentive()
-        {
-            var empData= employees
-        }
-        private static void getFirstNameIncentiveAmountGreater()
+              private static void getFirstNameIncentiveAmountGreater()
         {
             var empData = employees.Join(incentives, emp => emp.EmployeeId, inc => inc.EmployeeReffId, (emp, inc) => new { emp.FirstName, inc.IncentiveAmount }).Where(inc => inc.IncentiveAmount > 3000);
             foreach (var empInc in empData)
@@ -274,7 +273,7 @@ namespace Linq
         }
         private static void getFirstNameIncentiveAmount()
         {
-            var empData = employees.Join(incentives, emp => emp.EmployeeId, inc => inc.EmployeeReffId, (emp, inc) => new { emp.FirstName, inc.IncentiveAmount })
+            var empData = employees.Join(incentives, emp => emp.EmployeeId, inc => inc.EmployeeReffId, (emp, inc) => new { emp.FirstName, inc.IncentiveAmount });
             foreach (var empInc in empData)
             {
                 Console.WriteLine("\n");
